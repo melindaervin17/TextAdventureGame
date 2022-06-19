@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-    public class Items
+public class Items
+{
+    public Items(){}
+
+    public Items(string name)
     {
-        public Items(){}
-
-        public Items(string name)
-        {
-            Name = name;
-        }
-
-        public int ID { get; set; }
-
-        public string Name { get; set; }
+        Name = name;
     }
+
+    public string Name { get; set; }
+    public int ID { get; set; }
+}
     

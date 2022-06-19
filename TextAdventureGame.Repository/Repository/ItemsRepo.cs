@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-    public class ItemsRepo
+public class ItemsRepo
     {
-        private readonly List<Items> _iRepo = new List<Items>();
+    private readonly List<Items> _iRepo = new List<Items>();
 
+    public bool AddItemToBackpack(Items item)
+    {
+        if(item != null)
+        {
+            _count++;
+            item.ID = _count;
+            _iRepo.Add(item);
+            return true;
+        }
+        return false;
+    }
         public List<Items> ViewAllItems()
         {
             return _iRepo;
@@ -22,15 +33,8 @@ using System.Threading.Tasks;
                 }
 
             }
-                return null;
+            return null;
         }
-        public bool AddItemToBackpack(Items item)
-    {
-        if(item != null)
-        {
-            _iRepo.Add(item);
-            return true;
-        }
-        return false;
-    }
-    }
+
+    private int _count;
+}

@@ -16,14 +16,14 @@ using System.Threading.Tasks;
         private void SeedData()
         {
             Items flashlight = new Items("Flashlight");
-            Items firstaidKit = new Items("Firstaid Kit");
             Items rope = new Items("Rope");
+            Items firstaidKit = new Items("Firstaid Kit");
             Items waterBottle = new Items("Water Bottle");
             Items pocketKnife = new Items("Pocket Knife");
 
             _iRepo.AddItemToBackpack(flashlight); 
-            _iRepo.AddItemToBackpack(firstaidKit); 
             _iRepo.AddItemToBackpack(rope); 
+            _iRepo.AddItemToBackpack(firstaidKit); 
             _iRepo.AddItemToBackpack(waterBottle); 
             _iRepo.AddItemToBackpack(pocketKnife); 
         }
@@ -44,8 +44,8 @@ using System.Threading.Tasks;
 
             System.Console.WriteLine("You are lost in a forest with no cellphone reception");
             System.Console.WriteLine("What do you do?");
-            System.Console.WriteLine("1. seek out help");
-            System.Console.WriteLine("2. look for water");
+            System.Console.WriteLine("1. Seek out help");
+            System.Console.WriteLine("2. Look for water");
             System.Console.WriteLine("3. Build a Shelter");
             System.Console.Write("Choice: ");
             choice = Console.ReadLine().ToLower();
@@ -90,6 +90,8 @@ using System.Threading.Tasks;
 
         public void Second()
         {
+            Console.Clear();
+
             string secondChoice;
 
             System.Console.WriteLine("It's starting to get dark and you start to feel small rain drops. You hear rumbles of thunder in the distance.");
@@ -117,23 +119,24 @@ using System.Threading.Tasks;
                     break;
                 default:
                     System.Console.WriteLine("Please enter a valid option.");
+                    break;
             }
         }
 
         
         public void Third()
         {
-            string Decision;
+            string decision;
             Console.WriteLine("A low growl can be heard amongst the trees");
             Console.WriteLine("your stomach sinks and your eyes go wide as you scan the direction of the sound");
             Console.WriteLine("Will you fight or flee?");
             System.Console.WriteLine("1. Fight");
             System.Console.WriteLine("2. Flee");
             Console.Write("Decision: ");
-            Decision = Console.ReadLine().ToLower();
+            decision = Console.ReadLine().ToLower();
             Console.Clear();
 
-            switch(Decision)
+            switch(decision)
             {
                 case "1":
                 case"one":
@@ -156,6 +159,8 @@ using System.Threading.Tasks;
 
         public void GameOver()
         {
+            Console.Clear();
+
             string Redo;
 
             System.Console.Clear();
@@ -186,6 +191,8 @@ using System.Threading.Tasks;
 
         public void YouWin()
         {
+            Console.Clear();
+
             string TryAgain;
 
             System.Console.Clear();
@@ -218,8 +225,8 @@ using System.Threading.Tasks;
         {
             System.Console.WriteLine("Choose an option: \n" +
             "1. View All Items In Your Backpack \n" +
-            "2. Get An Item \n" +
-            "3. Put Away Backpack \n" 
+            "2. Get An Item \n" 
+            // "3. Close Backpack \n" 
             );
 
             string userInput = Console.ReadLine();
@@ -235,9 +242,9 @@ using System.Threading.Tasks;
                     GetItemByID();
                     break;
                 case "3":
-                case "three":
-                    CloseApplication1();
-                    break;
+                // case "three":
+                //     CloseBackpack();
+                //     break;
                 default:
                         System.Console.WriteLine("Invalid selection. Please choose from the options provided.");
                         break;
@@ -263,7 +270,7 @@ using System.Threading.Tasks;
             System.Console.WriteLine($"Item Name: {item.Name}\n"); 
         }
 
-        private void GetItemByID(int id)
+        private void GetItemByID()
         {
             Console.Clear();
 
@@ -275,12 +282,12 @@ using System.Threading.Tasks;
             // }
             try
             {
-                System.Console.WriteLine("Please selct an item by ID: ");
+                System.Console.WriteLine("Please selct an item by ID: \n");
                 int userInput = int.Parse(Console.ReadLine());
                 var selectedItem = _iRepo.GetItemByID(userInput);
                 if(selectedItem != null)
                 {
-                    DisplayAllItems(selectedItem);
+                    DisplayItem(selectedItem);
                 }
                 else
                 {
@@ -296,7 +303,7 @@ using System.Threading.Tasks;
 
         private void PressAnyKey()
         {
-            System.Console.WriteLine("Press any Key to continue...");
+            System.Console.WriteLine("Press any Key to continue... ");
             Console.ReadKey();
         }
 
