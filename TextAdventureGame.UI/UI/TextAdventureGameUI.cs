@@ -11,7 +11,6 @@ using System.Threading.Tasks;
         {
             SeedData();
             StartScreen();
-            First();
         }
 
         private void SeedData()
@@ -34,8 +33,7 @@ using System.Threading.Tasks;
                 System.Console.WriteLine("Welcome To The Forest. Good Luck On Your Adventure");
                 System.Console.WriteLine("You May Come Across Some Items To Pick Up...... Choose Wisely");
                 System.Console.WriteLine("You still have some items in your bag that you can use. Don't waste them.");
-                System.Console.WriteLine("Press any key to continue");
-                Console.ReadLine();
+                PressAnyKey();
                 Console.Clear();
                 First();                     
         }
@@ -57,162 +55,163 @@ using System.Threading.Tasks;
             {
                 case "1":
                 case "seek out help":
-                {
                     System.Console.WriteLine("You walk down the forest path seeking out help.");
                         System.Console.WriteLine("You shout for help and your voice echoes through the area.");
                         System.Console.WriteLine("There's no path to be seen and trees as far as the eye can see.");
                         System.Console.WriteLine("You hear sticks breaking behind you.... you turn around slowly");
                         System.Console.WriteLine("It's just a deer..... PHEW");
-                        System.Console.WriteLine("Press any key to continue...");
-                        Console.ReadLine();
                         PressAnyKey();
                         Second();
                         break;
-                }
                 case "2":
                 case "look for water":
-                {
                     System.Console.WriteLine("You hear running water....");
                         System.Console.WriteLine("It's a creek! Now that you have a nearby water source you begin drinking from it");
                         System.Console.WriteLine("After drinking some water, you are no longer thirsty and continue your journey");
-                        System.Console.WriteLine(" ");
-                        Console.ReadLine();
-                        // Fourth();
+                        PressAnyKey();
+                        Second();
                         break;
-                }
                 case "3":
                 case "build a shelter":
-                {
                     System.Console.WriteLine("You gather materials for building a shelter in the forest.");
                         System.Console.WriteLine("After a few hours you are able to erect a sturdy shelter.");
                         System.Console.WriteLine("While building your shelter you manage to make a wooden spear for protection. Hopefully you won't have to use it");
                         System.Console.WriteLine("You feel a bit safer in your shelter but night is soon approaching."); 
-                        Console.ReadLine();
-                        this.Second();
+                        PressAnyKey();
+                        Second();
                         break;
-                }
                 default:
-                {
-                System.Console.WriteLine("Command is invalid...");
-                        System.Console.WriteLine("Press 'Enter' to restart.");
-                        Console.ReadLine();
+                    System.Console.WriteLine("Please select a valid option.");
+                        PressAnyKey();
                         First();
                         break;
-                }
             }
         }
 
         public void Second()
         {
-            Random random = new Random();
-            System.Console.WriteLine("It's starting to get dark and you start to feel small rain drops. You hear rumbles of thunder in the distance. Do you stay in your covered shelter or look for food?");
-            string[] secondOptions = {$""};
-            int randomNumber = random.Next(0, 3);
-            string secondText = secondOptions[randomNumber];
-            if(secondText != null)
-            {
-                System.Console.WriteLine("Index doesn't exist"); 
-            }
-
             string secondChoice;
 
-            System.Console.WriteLine(secondText);
-            System.Console.WriteLine("Option 1");
+            System.Console.WriteLine("It's starting to get dark and you start to feel small rain drops. You hear rumbles of thunder in the distance.");
+            System.Console.WriteLine("Do you stay in your covered shelter or look for food?");
+            System.Console.WriteLine("1. Shelter");
+            System.Console.WriteLine("2. Food");
             System.Console.Write("Choice: ");
             secondChoice = Console.ReadLine().ToLower();
+            Console.Clear();
 
-            if(secondChoice == "1" || secondChoice == "shelter")
+            switch (secondChoice)
             {
-            Console.WriteLine("You end up getting soaked from the rain. You'll need to dry your clothes soon.");
-                Console.ReadLine();
-                Console.Clear();
-                Third();
+                case "1":
+                case "one":
+                    System.Console.WriteLine("You end up getting a little wet from the rain. You're stomach is growling... hopefully you find food soon.");
+                    PressAnyKey();
+                    Third();
+                    break;
+                case "2":
+                case "two":
+                    System.Console.WriteLine("Before you leave be sure to grab your flashlight out of your bag!");
+                    Options();
+                    Console.ReadLine();
+                    GameOver();
+                    break;
+                default:
+                    System.Console.WriteLine("Please enter a valid option.");
             }
-            else if (secondChoice == "2" || secondChoice == "n")
-            {
-                Console.WriteLine("Before you leave be sure to grab your flashlight out of your bag!");
-                
-                Console.ReadLine();
-                gameOver();
-
-            }
-            else
-            {
-                Console.WriteLine("You must reply Yes or no.");
-                Console.WriteLine("Press 'Enter' to continue.");
-                Console.ReadLine();
-                Second();
-            }
-
         }
+
         
         public void Third()
-
         {
-            int Decision;
+            string Decision;
             Console.WriteLine("A low growl can be heard amongst the trees");
             Console.WriteLine("your stomach sinks and your eyes go wide as you scan the direction of the sound");
-            Console.WriteLine("Will you fight or flee? Type 1 or 2.");
+            Console.WriteLine("Will you fight or flee?");
+            System.Console.WriteLine("1. Fight");
+            System.Console.WriteLine("2. Flee");
             Console.Write("Decision: ");
-            int.TryParse(Console.ReadLine(), out Decision);
-            int loop = 0;
-            bool dead = false;
-            while (Decision != 1 && dead == false)
+            Decision = Console.ReadLine().ToLower();
+            Console.Clear();
+
+            switch(Decision)
             {
-                if (loop <= 0)
-                {
-                    Console.WriteLine("You are too slow, a large bear leaps out and claws you in the chest.");
-                    Console.WriteLine("You are bleeding profusely now, will your flee or fight?");
-                    Console.Write("Decision: ");
-                    int.TryParse(Console.ReadLine(), out Decision);
-                    loop ++ ;
-                }
-                else if (loop >= 1)
-                {
-                    Console.WriteLine("The bear grabs you by your pants, you are kicking and screaming.");
-                    Console.WriteLine("Fear and adrenaline surge with in you. Fight or Flee? 1 or 2? ");
-                    Console.Write("Decision: ");
-                    int.TryParse(Console.ReadLine(), out Decision);
-                    dead = true;
-                }              
+                case "1":
+                case"one":
+                    System.Console.WriteLine("Quick get your knife");
+                    Options();
+                    System.Console.WriteLine("You are too slow, and a large bear leaps out and claws you in the chest.");
+                    System.Console.WriteLine("You are bleeding profusely and you can't move.");
+                    PressAnyKey();
+                    GameOver();
+                    break;
+                case "2":
+                case "two":
+                    System.Console.WriteLine("The bear grabs you by ypour pants, you are kicking and screaming.");
+                    System.Console.WriteLine("Fear and adreanaline surge within you. Suddenly your pants tear, you're free! Hope you brought an extra pair...");
+                    PressAnyKey();
+                    YouWin();
+                    break;
             }
-            if (dead == true )
-                {
-                Console.WriteLine("You feel a sharp claw swipe your back , and jagged teeth tear at your legs");
-                Console.WriteLine("All is pain, followed by darkness.");
-                Console.ReadLine();
-                gameOver();
-                }
-            else 
+        }
 
-                {
-                Console.WriteLine("You fight with all your might, punching the bear in the nose and causing it to flee.");
-                Console.ReadLine();
-                youWin();
-                }
+        public void GameOver()
+        {
+            string Redo;
+
+            System.Console.Clear();
+            System.Console.WriteLine("You have died.");
+            System.Console.WriteLine("Things get wild in the forest, try to be a bit more careful!");
+            System.Console.WriteLine("Try again?");
+            System.Console.WriteLine("1. Retry");
+            System.Console.WriteLine("2. Quit");
+            Redo = Console.ReadLine().ToLower();
+            Console.Clear();
+            
+            switch(Redo)
+            {
+                case "1":
+                case "one":
+                    First();
+                    break;
+                case "2":
+                case "two":
+                    CloseApplication2();
+                    break;
+                default:
+                    System.Console.WriteLine("Please select a valid option");
+                    break;
+            }
         }
 
 
-        public void gameOver()
+        public void YouWin()
         {
-            Console.Clear();
-            Console.WriteLine("You have died.");
-            Console.WriteLine("All is good in the multiverse and nature continues it's course.");
-            Console.WriteLine("The End?");
-            Console.ReadLine();
-            Console.Clear();
-            StartScreen();
-        }
+            string TryAgain;
 
-        public void youWin()
-        {
+            System.Console.Clear();
+            System.Console.WriteLine("It's your lucky day");
+            System.Console.WriteLine("A group of hikers spot you and call for help.");
+            System.Console.WriteLine("They give you food and water, you're saved... or are you?");
+            System.Console.WriteLine("Think you can do it again?");
+            System.Console.WriteLine("1. Retry");
+            System.Console.WriteLine("2. Quit");
+            TryAgain = Console.ReadLine().ToLower();
             Console.Clear();
-            Console.WriteLine("You have survived.");
-            Console.WriteLine("A group of rangers spot you.");
-            Console.WriteLine("You are saved.");
-            Console.ReadLine();
-            Console.Clear();
-            StartScreen();
+            
+            switch (TryAgain)
+            {
+                case "1":
+                case "one":
+                    First();
+                    break;
+                case "2":
+                case "two":
+                    CloseApplication1();
+                    break;
+                default:
+                    System.Console.WriteLine("Please select a valid option");
+                    break;
+            }
         }
 
         public void Options()
@@ -237,7 +236,7 @@ using System.Threading.Tasks;
                     break;
                 case "3":
                 case "three":
-                    // CloseBackpack();
+                    CloseApplication1();
                     break;
                 default:
                         System.Console.WriteLine("Invalid selection. Please choose from the options provided.");
@@ -254,14 +253,13 @@ using System.Threading.Tasks;
 
             foreach(Items item in ListOfItems)
             {
-                DisplayAllItems(item);
+                DisplayItem(item);
             }
-            
-            // PressAnyKey();
         }
 
-        private void DisplayAllItems(Items item)
+        private void DisplayItem(Items item)
         {
+            System.Console.WriteLine("");
             System.Console.WriteLine($"Item Name: {item.Name}\n"); 
         }
 
@@ -314,12 +312,6 @@ using System.Threading.Tasks;
             System.Console.WriteLine("Whoops, better luck next time!");
             return false;
         }
-
-    //     private bool CloseBackpack()
-    //     {
-
-    //     }
-
     }
 
 
